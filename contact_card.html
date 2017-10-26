@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contact Card</title>
+        <link rel="stylesheet" type="text/css" href="contact_card.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            
+            function get_data() {
+                $('form').children('input').val()
+                };
+            
+            
+            $(document).ready(function(){
+                
+                console.log("Document is Ready");
+                
+
+                $(document).on("click", "button", function(){           
+                    // checks to see if button was clicked, print to console.log 
+                    console.log("clicked button");
+
+                    // when the button is clicked the card is appended with the contact info showing, and the description value hidden
+                    $('.contacts').append('<div class="grouped"><h1>' + $("input[id='f_name']").val() + ' ' + $("input[id='l_name']").val() + '</h1><p>Click for description!</p><p class="hidden">' + $("textarea[id='desc']").val() + '</p></div>');
+
+                    // resets form values to blank for next entry
+                    $('input').val("");
+                    $('textarea').val('');
+
+                    // testline to make sure append occured
+                    console.log("append");
+
+                    // return false
+                });  
+                
+                // when the contact card is clicked it toggles between the description and what showed initially
+                $('.contacts').on('click','.grouped', function(){
+                    $(this).children().toggle();
+                    });
+            });   
+
+        </script>
+    </head>
+    <body>
+        <div class="entry">
+            <form action="google.com" id='add_contact'>
+                <label for="f_name">First Name:</label>
+                <input type="text" id="f_name"><br>
+                <label for="l_name">Last Name:</label>
+                <input type="text" id="l_name"><br>
+            </form>
+            <label for="desc">Description:</label>
+            <textarea form="add_contact" id="desc">Enter description</textarea>
+            <button type="submit" form="add_user">Add User</button>
+        </div>
+        <div class="contacts"></div>
+        </div>
+
+    </body>
+</html>
